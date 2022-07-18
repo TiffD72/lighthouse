@@ -9,10 +9,11 @@
  * @fileoverview Audits a page to determine if it is calling deprecated APIs.
  */
 
-const Audit = require('./audit.js');
-const JsBundles = require('../computed/js-bundles.js');
-const i18n = require('../lib/i18n/i18n.js');
-const {getIssueDetailDescription} = require('../lib/deprecations-strings.js');
+import {Audit} from './audit.js';
+
+import JsBundles from '../computed/js-bundles.js';
+import * as i18n from '../lib/i18n/i18n.js';
+import {getIssueDetailDescription} from '../lib/deprecations-strings.js';
 
 /* eslint-disable max-len */
 const UIStrings = {
@@ -35,7 +36,7 @@ const UIStrings = {
 };
 /* eslint-enable max-len */
 
-const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
+const str_ = i18n.createMessageInstanceIdFn(import.meta.url, UIStrings);
 
 class Deprecations extends Audit {
   /**
@@ -111,5 +112,5 @@ class Deprecations extends Audit {
   }
 }
 
-module.exports = Deprecations;
-module.exports.UIStrings = UIStrings;
+export default Deprecations;
+export {UIStrings};
